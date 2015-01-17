@@ -44,19 +44,40 @@ class __TwigTemplate_1790e2d3ca8cda8ed8a7c0a39fc4183f5b8129bc31953783cdf9c7d6bc7
 \t\t\t\t\t\t<li ><a href=\"#\">Client</a></li>
 \t\t\t\t\t\t<li><a href=\"#\">Entreprise</a></li>
 \t\t\t\t\t</ul>
-\t\t\t\t<div class=\"well\">
-\t\t\t\t\tuser1
-\t\t\t\t</div>
-\t\t\t\t<div class=\"well\">
-\t\t\t\t\tuser2
-\t\t\t\t</div>
-\t\t\t\t<div class=\"well\">
-\t\t\t\t\tuser3
-\t\t\t\t</div>
-\t\t\t</div>\t
+\t\t\t\t\t";
+        // line 12
+        if ( !twig_test_empty((isset($context["clients"]) ? $context["clients"] : $this->getContext($context, "clients")))) {
+            // line 13
+            echo "\t\t\t\t\t";
+            $context['_parent'] = (array) $context;
+            $context['_seq'] = twig_ensure_traversable((isset($context["clients"]) ? $context["clients"] : $this->getContext($context, "clients")));
+            foreach ($context['_seq'] as $context["_key"] => $context["client"]) {
+                // line 14
+                echo "\t\t\t\t\t\t<div class=\"well\">
+\t\t\t\t\t\t\t";
+                // line 15
+                echo twig_escape_filter($this->env, $this->getAttribute($context["client"], "nom", array()), "html", null, true);
+                echo "
+\t\t\t\t\t\t</div>
+\t\t\t\t\t";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['client'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 18
+            echo "\t\t\t\t\t";
+        } else {
+            // line 19
+            echo "\t\t\t\t\t\t<div class=\"well\" style=\"text-align:center\">
+\t\t\t\t\t\t\t<h2>Vos n'avez pas encore de contact.</h2>
+\t\t\t\t\t\t</div>
+\t\t\t\t\t";
+        }
+        // line 23
+        echo "\t\t\t</div>\t
 \t\t\t<div class=\"col-lg-6\">
 \t\t\t\t<a class=\"btn btn-default\" href=\"";
-        // line 23
+        // line 25
         echo $this->env->getExtension('routing')->getPath("bg_plateform_add_client");
         echo "\">Ajouter client</a>
 \t\t\t\t<a class=\"btn btn-default\">Ajouter entreprise</a>
@@ -78,6 +99,6 @@ class __TwigTemplate_1790e2d3ca8cda8ed8a7c0a39fc4183f5b8129bc31953783cdf9c7d6bc7
 
     public function getDebugInfo()
     {
-        return array (  60 => 23,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  81 => 25,  77 => 23,  71 => 19,  68 => 18,  59 => 15,  56 => 14,  51 => 13,  49 => 12,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

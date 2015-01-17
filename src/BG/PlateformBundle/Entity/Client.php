@@ -20,6 +20,11 @@ class Client
     private $User;
 
     /**
+     * @ORM\OneToOne(targetEntity="BG\PlateformBundle\Entity\Image", cascade={"persist"})
+     */
+    private $Image;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")

@@ -38,7 +38,10 @@ class __TwigTemplate_cf4e5325ebcd541b529d1dc668f323bd25822e92bbc9fafceed090ec912
         // line 3
         echo "\t<div class=\"container\">
 \t\t<div class=\"row\">
-\t\t\t<div class=\"col-lg-12\"><h1>403 - Erreur.</h1></div>
+\t\t\t<div class=\"col-lg-12\"><h1>";
+        // line 5
+        echo twig_escape_filter($this->env, (isset($context["type"]) ? $context["type"] : $this->getContext($context, "type")), "html", null, true);
+        echo " - Erreur.</h1></div>
 \t\t</div>
 \t\t<div class=\"row\">
 \t\t\t<div class=\"col-lg-12\"><h3>";
@@ -62,6 +65,6 @@ class __TwigTemplate_cf4e5325ebcd541b529d1dc668f323bd25822e92bbc9fafceed090ec912
 
     public function getDebugInfo()
     {
-        return array (  46 => 8,  39 => 3,  36 => 2,  11 => 1,);
+        return array (  49 => 8,  43 => 5,  39 => 3,  36 => 2,  11 => 1,);
     }
 }

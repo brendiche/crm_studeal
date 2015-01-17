@@ -3,7 +3,6 @@
 namespace BG\UserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use BG\PlateformBundle\Entity\Client;
 use Doctrine\ORM\QueryBuilder;
 
 /**
@@ -14,16 +13,5 @@ use Doctrine\ORM\QueryBuilder;
  */
 class UserRepository extends EntityRepository
 {
-	public function myGetClient()
-  	{
-	    $qb = $this->createQueryBuilder('a');
-	    $qb
-	      ->join("a.Client","c")
-	      ->addSelect("c")
-	      ;
-	    return $qb
-	      ->getQuery()
-	      ->getResult()
-	    ;
-  	}
+
 }

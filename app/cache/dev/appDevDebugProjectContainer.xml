@@ -3019,7 +3019,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>54b56683a3293</argument>
+            <argument>54ba3f2e73b4d</argument>
           </service>
         </argument>
       </argument>
@@ -3309,7 +3309,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>54b56683a3293</argument>
+            <argument>54ba3f2e73b4d</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3847,12 +3847,13 @@
               <service class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
                 <call method="addDriver">
                   <argument type="service">
-                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
-                      <argument type="service" id="annotation_reader"/>
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedYamlDriver" public="false">
                       <argument type="collection">
-                        <argument>/home/brendiche/projet/orm/src/BG/PlateformBundle/Entity</argument>
-                        <argument>/home/brendiche/projet/orm/src/BG/UserBundle/Entity</argument>
+                        <argument key="/home/brendiche/projet/orm/src/BG/PlateformBundle/Resources/config/doctrine">BG\PlateformBundle\Entity</argument>
                       </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
                     </service>
                   </argument>
                   <argument>BG\PlateformBundle\Entity</argument>
@@ -3862,7 +3863,6 @@
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
-                        <argument>/home/brendiche/projet/orm/src/BG/PlateformBundle/Entity</argument>
                         <argument>/home/brendiche/projet/orm/src/BG/UserBundle/Entity</argument>
                       </argument>
                     </service>

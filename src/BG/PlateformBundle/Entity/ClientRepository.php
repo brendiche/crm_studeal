@@ -3,6 +3,7 @@
 namespace BG\PlateformBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * ClientRepository
@@ -12,4 +13,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class ClientRepository extends EntityRepository
 {
+	public function getClientWithUser($id){
+		$qb = $this->createQueryBuilder('c');
+	    $qb
+	    	->join("c.User","u","WITH","u.id = :id")
+	    	->setParameter('id',$id)
+	    	->addSelect("u")
+	      ;
+	    return $qb
+	      ->getQuery()
+	      ->getResult()
+	    ;
+	}
 }

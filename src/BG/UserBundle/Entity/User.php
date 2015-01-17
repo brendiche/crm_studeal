@@ -1,0 +1,79 @@
+<?php
+
+namespace BG\UserBundle\Entity;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="BG\UserBundle\Entity\UserRepository")
+ */
+class User extends BaseUser
+{
+    /**
+    * @ORM\OneToMany(targetEntity="BG\PlateformBundle\Entity\Client",mappedBy="User")
+    */
+    private $Clients;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Clients = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add Clients
+     *
+     * @param \BG\PlateformBundle\Entity\Client $clients
+     * @return User
+     */
+    public function addClient(\BG\PlateformBundle\Entity\Client $clients)
+    {
+        $this->Clients[] = $clients;
+
+        return $this;
+    }
+
+    /**
+     * Remove Clients
+     *
+     * @param \BG\PlateformBundle\Entity\Client $clients
+     */
+    public function removeClient(\BG\PlateformBundle\Entity\Client $clients)
+    {
+        $this->Clients->removeElement($clients);
+    }
+
+    /**
+     * Get Clients
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getClients()
+    {
+        return $this->Clients;
+    }
+}

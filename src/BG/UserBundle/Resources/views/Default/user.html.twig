@@ -1,0 +1,28 @@
+{% extends '::layout/home.html.twig' %}
+
+{% block main %}
+	<div class="container-fluid">
+		<din class="row">
+			<div class="col-lg-6" >
+				<h3>Répertoire</h3>
+					<ul class="nav nav-tabs nav-justified">
+						<li ><a href="#">Client</a></li>
+						<li><a href="#">Entreprise</a></li>
+					</ul>
+				<div class="well">
+					user1
+				</div>
+				<div class="well">
+					user2
+				</div>
+				<div class="well">
+					user3
+				</div>
+			</div>	
+			<div class="col-lg-6">
+				<a class="btn btn-default" href="{{  path('bg_plateform_add_client') }}">Ajouter client</a>
+				<a class="btn btn-default">Ajouter entreprise</a>
+			</div>
+		</din>
+	</div>
+{% endblock %}

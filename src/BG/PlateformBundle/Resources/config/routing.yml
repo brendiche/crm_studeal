@@ -1,0 +1,12 @@
+bg_plateform_home:
+    path:     /
+    defaults: { _controller: BGPlateformBundle:Default:index }
+bg_plateform_add_client:
+    path:     /client/add/
+    defaults: { _controller: BGPlateformBundle:Default:addClient}
+bg_plateform_delete_client:
+    path:     /client/delete/{id}
+    defaults: { _controller: BGPlateformBundle:Default:deleteClient}
+bg_plateform_edit_client:
+    path:     /client/edit/{id}
+    defaults: { _controller: BGPlateformBundle:Default:editClient}

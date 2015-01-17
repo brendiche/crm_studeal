@@ -1,0 +1,3 @@
+bg_plateform_user:
+    path:    /user/{id}
+    defaults: {_controller: BGUserBundle:User:index}

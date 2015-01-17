@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{  path('bg_plateform_home') }}">Orm - Studeal</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				{% if app.user %}
+				<li class="btn-primary"><a href="{{  path('bg_plateform_user',{'id': app.user.id }) }}" style="color:black;text-align:center">{{ app.user.username }}</a></li>
+				<li class="btn-danger"><a href="{{ path('fos_user_security_logout')}}" style="color:black;text-align:center">Déconnexion</a></li>					
+				{% else %}
+				<li class="btn-info"><a href="{{  path('fos_user_security_login') }}" style="color:black;text-align:center">Connexion</a></li>
+				<li class="btn-success"><a href="{{ path('fos_user_registration_register')}}" style="color:black;text-align:center">Inscription</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+    {% block  main %}
+	{% endblock %}    	
+{% endblock %}
+

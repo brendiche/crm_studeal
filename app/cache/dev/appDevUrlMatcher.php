@@ -141,24 +141,49 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::indexAction',  '_route' => 'bg_plateform_home',);
         }
 
-        if (0 === strpos($pathinfo, '/client')) {
-            // bg_plateform_add_client
-            if (rtrim($pathinfo, '/') === '/client/add') {
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'bg_plateform_add_client');
+        if (0 === strpos($pathinfo, '/c')) {
+            if (0 === strpos($pathinfo, '/client')) {
+                // bg_plateform_add_client
+                if (rtrim($pathinfo, '/') === '/client/add') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'bg_plateform_add_client');
+                    }
+
+                    return array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::addClientAction',  '_route' => 'bg_plateform_add_client',);
                 }
 
-                return array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::addClientAction',  '_route' => 'bg_plateform_add_client',);
+                // bg_plateform_delete_client
+                if (0 === strpos($pathinfo, '/client/delete') && preg_match('#^/client/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_delete_client')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::deleteClientAction',));
+                }
+
+                // bg_plateform_edit_client
+                if (0 === strpos($pathinfo, '/client/edit') && preg_match('#^/client/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_edit_client')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::editClientAction',));
+                }
+
             }
 
-            // bg_plateform_delete_client
-            if (0 === strpos($pathinfo, '/client/delete') && preg_match('#^/client/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_delete_client')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::deleteClientAction',));
-            }
+            if (0 === strpos($pathinfo, '/company')) {
+                // bg_plateform_add_company
+                if (rtrim($pathinfo, '/') === '/company/add') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'bg_plateform_add_company');
+                    }
 
-            // bg_plateform_edit_client
-            if (0 === strpos($pathinfo, '/client/edit') && preg_match('#^/client/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_edit_client')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::editClientAction',));
+                    return array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::addCompanyAction',  '_route' => 'bg_plateform_add_company',);
+                }
+
+                // bg_plateform_delete_company
+                if (0 === strpos($pathinfo, '/company/delete') && preg_match('#^/company/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_delete_company')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::deleteCompanyAction',));
+                }
+
+                // bg_plateform_edit_company
+                if (0 === strpos($pathinfo, '/company/edit') && preg_match('#^/company/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_edit_company')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::editCompanyAction',));
+                }
+
             }
 
         }

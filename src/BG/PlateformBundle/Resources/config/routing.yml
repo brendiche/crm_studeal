@@ -1,6 +1,7 @@
 bg_plateform_home:
     path:     /
     defaults: { _controller: BGPlateformBundle:Default:index }
+
 bg_plateform_add_client:
     path:     /client/add/
     defaults: { _controller: BGPlateformBundle:Default:addClient}
@@ -10,3 +11,13 @@ bg_plateform_delete_client:
 bg_plateform_edit_client:
     path:     /client/edit/{id}
     defaults: { _controller: BGPlateformBundle:Default:editClient}
+
+bg_plateform_add_company:
+    path:     /company/add/
+    defaults: { _controller: BGPlateformBundle:Default:addCompany}
+bg_plateform_delete_company:
+    path:     /company/delete/{id}
+    defaults: { _controller: BGPlateformBundle:Default:deleteCompany}
+bg_plateform_edit_company:
+    path:     /company/edit/{id}
+    defaults: { _controller: BGPlateformBundle:Default:editCompany}

@@ -2,4 +2,4 @@ _assetic:
     resource: .
     type: assetic
 _app:
-    resource: /home/brendiche/projet/orm/app/config/routing_dev.yml
+    resource: /home/brendiche/projet/crm_studeal/app/config/routing_dev.yml

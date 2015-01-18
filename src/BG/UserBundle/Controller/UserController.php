@@ -13,7 +13,8 @@ class UserController extends Controller
     
     public function indexAction($id){
     	 
-        if($id == $this->get('security.context')->getToken()->getUser()->getId()){
+        if($id == $this->get('security.context')->getToken()->getUser()->getId() ||
+         $this->get('security.context')->getToken()->getUser()->hasRole("ROLE_SUPER_ADMIN")){
             $clients = $this
                     ->getDoctrine()
                     ->getManager()

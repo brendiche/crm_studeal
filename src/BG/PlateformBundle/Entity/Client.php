@@ -14,10 +14,16 @@ class Client
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="BG\UserBundle\Entity\User", inversedBy="Clients")
+     * @ORM\ManyToOne(targetEntity="BG\UserBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $User;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BG\PlateformBundle\Entity\Company",)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Company;
 
     /**
      * @ORM\OneToOne(targetEntity="BG\PlateformBundle\Entity\Image", cascade={"persist"})
@@ -185,5 +191,51 @@ class Client
     public function getUser()
     {
         return $this->User;
+    }
+
+    /**
+     * Set Image
+     *
+     * @param \BG\PlateformBundle\Entity\Image $image
+     * @return Client
+     */
+    public function setImage(\BG\PlateformBundle\Entity\Image $image = null)
+    {
+        $this->Image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get Image
+     *
+     * @return \BG\PlateformBundle\Entity\Image 
+     */
+    public function getImage()
+    {
+        return $this->Image;
+    }
+
+    /**
+     * Set Company
+     *
+     * @param \BG\Plateform\Entity\Company $company
+     * @return Client
+     */
+    public function setCompany(\BG\Plateform\Entity\Company $company)
+    {
+        $this->Company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get Company
+     *
+     * @return \BG\Plateform\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->Company;
     }
 }

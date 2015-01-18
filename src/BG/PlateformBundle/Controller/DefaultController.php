@@ -4,6 +4,7 @@ namespace BG\PlateformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BG\PlateformBundle\Entity\Client;
+use BG\PlateformBundle\Entity\Company;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
@@ -21,6 +22,9 @@ class DefaultController extends Controller
     					->add("Prenom","text")
     					->add("Email","email")
     					->add("Telephone","text")
+                        ->add("Company","entity",array(
+                                                    "class"=>"BGPlateformBundle:Company",
+                                                    "property"=>"nom"))
     					->add('Enregistrer',"submit")
     					->getForm();
 
@@ -44,5 +48,36 @@ class DefaultController extends Controller
 
     public function deleteClientAction($id){
 
+    }
+
+    public function addCompanyAction(Request $request){
+        $company = new Company();
+        $form = $this->get('form.factory')->createBuilder('form',$company)
+                        ->add("Nom","text")
+                        ->add("adresse","text")
+                        ->add("siret","text")
+                        ->add('Enregistrer',"submit")
+                        ->getForm();
+
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($company);
+            $em->flush();
+            return $this->redirect($this->generateUrl('bg_plateform_user',
+             array('id' => $this->get('security.context')->getToken()->getUser()->getId())));
+        }
+
+         return $this->render('BGPlateformBundle:Default:addCompany.html.twig', array(
+            'form' => $form->createView(),
+            ));
+    }
+
+    public function editCompanyAction($id){
+        
+    }
+
+    public function deleteCompanyAction($id){
+        
     }
 }

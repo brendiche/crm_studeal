@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BG\PlateformBundle\Entity\Client;
 use BG\PlateformBundle\Entity\Company;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
+
 
 class DefaultController extends Controller
 {
@@ -16,22 +18,38 @@ class DefaultController extends Controller
 
     public function addClientAction(Request $request){
     	$client = new Client();
+        $company = new Company();
         $client->setUser($this->get('security.context')->getToken()->getUser());
     	$form = $this->get('form.factory')->createBuilder('form',$client)
     					->add("Nom","text")
     					->add("Prenom","text")
     					->add("Email","email")
     					->add("Telephone","text")
+                        ->add("addCompany","checkbox",array('required'  => false,))
                         ->add("Company","entity",array(
                                                     "class"=>"BGPlateformBundle:Company",
-                                                    "property"=>"nom"))
+                                                    "query_builder"=>function(EntityRepository $er){
+                                                        return $er->createQueryBuilder('c')
+                                                                  ->join("c.User","u","WITH","u.id = :id")
+                                                                  ->setParameter('id',$this->get('security.context')->getToken()->getUser()->getId())
+                                                                  ;
+                                                    },
+                                                    "property"=>"nom",
+                                                    ))
     					->add('Enregistrer',"submit")
     					->getForm();
 
     	$form->handleRequest($request);
     	if($form->isValid()){
     		$em = $this->getDoctrine()->getManager();
-    		$em->persist($client);
+            if($client->getAddCompany()){
+                 $company = $em->getRepository('BGPlateformBundle:Company')
+                              ->findOneByNom($client->getCompany()->getNom());
+                $client->setCompany($company);
+            }else{
+               $client->unsetCompany();
+            }
+            $em->persist($client);
     		$em->flush();
     		return $this->redirect($this->generateUrl('bg_plateform_user',
     		 array('id' => $this->get('security.context')->getToken()->getUser()->getId())));
@@ -42,16 +60,60 @@ class DefaultController extends Controller
     		));
     }
 
-    public function editClientAction($id){
+    public function editClientAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository("BGPlateformBundle:Client")->find($id);
+        $form = $this->get('form.factory')->createBuilder('form',$client)
+                        ->add("Nom","text")
+                        ->add("Prenom","text")
+                        ->add("Email","email")
+                        ->add("Telephone","text")
+                        ->add("addCompany","checkbox",array('required'  => false,))
+                        ->add("Company","entity",array(
+                                                    "class"=>"BGPlateformBundle:Company",
+                                                    "query_builder"=>function(EntityRepository $er){
+                                                        return $er->createQueryBuilder('c')
+                                                                  ->join("c.User","u","WITH","u.id = :id")
+                                                                  ->setParameter('id',$this->get('security.context')->getToken()->getUser()->getId())
+                                                                  ;
+                                                    },
+                                                    "property"=>"nom",
+                                                    ))
+                        ->add('Enregistrer',"submit")
+                        ->getForm();
+
+        $form->handleRequest($request);
+        if($form->isValid()){
+            if($client->getAddCompany()){
+                 $company = $em->getRepository('BGPlateformBundle:Company')
+                              ->findOneByNom($client->getCompany()->getNom());
+                $client->setCompany($company);
+            }else{
+               $client->unsetCompany();
+            }
+            $em->flush();
+            return $this->redirect($this->generateUrl('bg_plateform_user',
+             array('id' => $this->get('security.context')->getToken()->getUser()->getId())));
+        }
+
+         return $this->render('BGPlateformBundle:Default:addClient.html.twig', array(
+            'form' => $form->createView(),
+            ));
+
 
     }
 
     public function deleteClientAction($id){
-
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository('BGPlateformBundle:Client')->find($id);
+        $em->remove($client);
+        $em->flush();
+        return $this->redirect($this->get('router')->generate('bg_plateform_user',array("id"=> $this->get('security.context')->getToken()->getUser()->getId())));
     }
 
     public function addCompanyAction(Request $request){
         $company = new Company();
+        $company->setUser($this->get('security.context')->getToken()->getUser());
         $form = $this->get('form.factory')->createBuilder('form',$company)
                         ->add("Nom","text")
                         ->add("adresse","text")
@@ -61,6 +123,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
         if($form->isValid()){
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($company);
             $em->flush();
@@ -73,11 +136,33 @@ class DefaultController extends Controller
             ));
     }
 
-    public function editCompanyAction($id){
-        
+    public function editCompanyAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository("BGPlateformBundle:Company")->find($id);
+        $form = $this->get('form.factory')->createBuilder('form',$company)
+                        ->add("Nom","text")
+                        ->add("adresse","text")
+                        ->add("siret","text")
+                        ->add('Enregistrer',"submit")
+                        ->getForm();
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $em->flush();
+            return $this->redirect($this->generateUrl('bg_plateform_user',
+             array('id' => $this->get('security.context')->getToken()->getUser()->getId())));
+        }
+
+         return $this->render('BGPlateformBundle:Default:addCompany.html.twig', array(
+            'form' => $form->createView(),
+            ));
     }
 
     public function deleteCompanyAction($id){
+         $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository('BGPlateformBundle:Company')->find($id);
+        $em->remove($company);
+        $em->flush();
+        return $this->redirect($this->get('router')->generate('bg_plateform_user',array("id"=> $this->get('security.context')->getToken()->getUser()->getId())));
         
     }
 }

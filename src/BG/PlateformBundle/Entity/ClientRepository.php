@@ -13,16 +13,18 @@ use Doctrine\ORM\QueryBuilder;
  */
 class ClientRepository extends EntityRepository
 {
-	public function getClientWithUser($id){
+	public function getClientFromUser($id){
 		$qb = $this->createQueryBuilder('c');
-	    $qb
-	    	->join("c.User","u","WITH","u.id = :id")
+	    $qb ->join("c.User","u","WITH","u.id = :id")
 	    	->setParameter('id',$id)
 	    	->addSelect("u")
+	    	->leftjoin("c.Company","e")
+	    	->addSelect("e")
 	      ;
 	    return $qb
 	      ->getQuery()
 	      ->getResult()
 	    ;
 	}
+
 }

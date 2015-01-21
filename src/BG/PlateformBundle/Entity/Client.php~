@@ -3,7 +3,8 @@
 namespace BG\PlateformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use BG\PlateformBundle\Entity\Company;
+use BG\UserBundle\Entity\User;
 /**
  * Client
  *
@@ -20,8 +21,8 @@ class Client
     private $User;
 
     /**
-     * @ORM\ManyToOne(targetEntity="BG\Plateform\Entity\Company",)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="BG\PlateformBundle\Entity\Company")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $Company;
 
@@ -66,7 +67,13 @@ class Client
      * @ORM\Column(name="Telephone", type="integer")
      */
     private $telephone;
-
+    
+    /**
+    * @var boolean
+    *
+    * @ORM\Column(name="addCompany",type="boolean")
+    */
+    private $addCompany;
 
     /**
      * Get id
@@ -176,7 +183,7 @@ class Client
      * @param \BG\UserBundle\Entity\User $user
      * @return Client
      */
-    public function setUser(\BG\UserBundle\Entity\User $user)
+    public function setUser(User $user)
     {
         $this->User = $user;
 
@@ -215,4 +222,29 @@ class Client
     {
         return $this->Image;
     }
+
+    /**
+     * Set Company
+     *
+     * @param \BG\Plateform\Entity\Company $company
+     * @return Client
+     */
+    public function setCompany(Company $company)
+    {
+        $this->Company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get Company
+     *
+     * @return \BG\Plateform\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->Company;
+    }
+
+   
 }

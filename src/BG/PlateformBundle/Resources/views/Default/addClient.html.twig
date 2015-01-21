@@ -3,7 +3,58 @@
 	<div class="content-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-				{{ form(form) }}
+				 {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+				 {{ form_errors(form) }}
+				 <div class="form-group">
+				 	{{ form_label(form.Nom,"Nom du client",{'label_attr': {'class': 'col-lg-3 control-label'}})}}
+				 	{{ form_errors(form.Nom)}}
+				 	<div class="col-lg-4">
+				 		{{ form_widget(form.Nom,{"attr" : {'class': 'form-control'}})}}
+				 	</div>
+				 </div>
+				 <div class="form-group">
+				 	{{ form_label(form.Prenom,"Prénom du client",{'label_attr':{'class':'col-lg-3 control-label'}})}}
+				 	{{ form_errors(form.Prenom)}}
+				 	<div class="col-lg-4">
+				 		{{ form_widget(form.Prenom,{'attr':{'class': 'form-control'}})}}
+				 	</div>
+				 </div>
+				 <div class="form-group">
+				 	{{ form_label(form.Email,"Email du client",{'label_attr':{'class': 'col-lg-3 control-label'}})}}
+				 	{{ form_errors(form.Email)}}
+					 <div class="col-lg-4">
+					 	{{ form_widget(form.Email,{'attr': {'class': 'form-control'}})}}
+					 </div>
+				</div>
+				<div class="form-group">
+					{{ form_label(form.Telephone,"Téléphone du client",{'label_attr':{'class': 'col-lg-3 control-label'}})}}
+					{{ form_errors(form.Telephone)}}
+					<div class="col-lg-4">
+						{{ form_widget(form.Telephone,{'attr': {'class':'form-control'}})}}
+					</div>
+				</div>
+				<div class="form-group">
+					{{ form_label(form.addCompany,"Voulez vous lui associer une entreprise",{'label_attr':{'class': 'col-lg-3 control-label'}})}}
+					{{ form_errors(form.addCompany)}}
+					<div class="col-lg-4">
+						{{ form_widget(form.addCompany)}}
+					</div>
+				</div>
+				<div class="form-group" id="company">
+					{{ form_label(form.Company,'Entreprise du client',{'label_attr':{'class': 'col-lg-3 control-label'}})}}
+					{{ form_errors(form.Company)}}
+					<div class="col-lg-4">
+						{{ form_widget(form.Company,{'attr': {'class': 'form-control'}})}}
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-lg-7" style="text-align:center">
+						{{ form_widget(form.Enregistrer	, {'attr': {'class': 'btn btn-primary'}}) }}
+					</div> 
+				</div>
+				{{ form_rest(form) }}
+
+				{{ form_end(form) }}
 			</div>
 		</div>	
 	</div>

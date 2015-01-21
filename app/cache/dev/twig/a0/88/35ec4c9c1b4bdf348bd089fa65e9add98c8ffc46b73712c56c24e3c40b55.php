@@ -50,43 +50,55 @@ class __TwigTemplate_a08835ec4c9c1b4bdf348bd089fa65e9add98c8ffc46b73712c56c24e3c
         // line 10
         if ($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array())) {
             // line 11
-            echo "\t\t\t\t<li class=\"btn-primary\"><a href=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_user", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
-            echo "\" style=\"color:black;text-align:center\">";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()), "html", null, true);
-            echo "</a></li>
-\t\t\t\t<li class=\"btn-danger\"><a href=\"";
+            echo "\t\t\t\t<li class=\"dropdown btn-primary\">
+\t\t\t\t\t<a href=\"#\" class=\"dropdown-toggle\" style=\"color:black;text-align:center\" data-toggle=\"dropdown\" role=\"button\" aria-expanded=\"false\">";
             // line 12
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "username", array()), "html", null, true);
+            echo " <span class=\"caret\"></span></a>
+\t\t\t\t\t<ul class=\"dropdown-menu\" role=\"menu\">
+\t                  <li><a href=\"";
+            // line 14
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_user", array("id" => $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "id", array()))), "html", null, true);
+            echo "\">Répertoire</a></li>
+\t                  <li class=\"divider\"></li>
+\t                  <li><a href=\"";
+            // line 16
+            echo $this->env->getExtension('routing')->getPath("fos_user_profile_show");
+            echo "\">Mon compte</a></li>
+\t                </ul>
+\t\t\t\t</li>
+\t\t\t\t<li class=\"btn-danger\"><a href=\"";
+            // line 19
             echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
             echo "\" style=\"color:black;text-align:center\">Déconnexion</a></li>\t\t\t\t\t
 \t\t\t\t";
         } else {
-            // line 14
+            // line 21
             echo "\t\t\t\t<li class=\"btn-info\"><a href=\"";
             echo $this->env->getExtension('routing')->getPath("fos_user_security_login");
             echo "\" style=\"color:black;text-align:center\">Connexion</a></li>
 \t\t\t\t<li class=\"btn-success\"><a href=\"";
-            // line 15
+            // line 22
             echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
             echo "\" style=\"color:black;text-align:center\">Inscription</a></li>
 \t\t\t\t";
         }
-        // line 17
+        // line 24
         echo "\t\t\t</ul>
 \t\t</div>
 \t</nav>
     ";
-        // line 20
+        // line 27
         $this->displayBlock('main', $context, $blocks);
-        // line 21
+        // line 28
         echo "    \t
 ";
     }
 
-    // line 20
+    // line 27
     public function block_main($context, array $blocks = array())
     {
-        // line 21
+        // line 28
         echo "\t";
     }
 
@@ -102,6 +114,6 @@ class __TwigTemplate_a08835ec4c9c1b4bdf348bd089fa65e9add98c8ffc46b73712c56c24e3c
 
     public function getDebugInfo()
     {
-        return array (  90 => 21,  87 => 20,  82 => 21,  80 => 20,  75 => 17,  70 => 15,  65 => 14,  60 => 12,  53 => 11,  51 => 10,  45 => 7,  40 => 4,  37 => 3,  11 => 1,);
+        return array (  102 => 28,  99 => 27,  94 => 28,  92 => 27,  87 => 24,  82 => 22,  77 => 21,  72 => 19,  66 => 16,  61 => 14,  56 => 12,  53 => 11,  51 => 10,  45 => 7,  40 => 4,  37 => 3,  11 => 1,);
     }
 }

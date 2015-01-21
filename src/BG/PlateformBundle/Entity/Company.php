@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Company
 {   
+
+    /**
+    * @ORM\ManyToOne(targetEntity="BG\UserBundle\Entity\User")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $User;
+    
     /**
      * @var integer
      *
@@ -120,5 +127,28 @@ class Company
     public function getSIRET()
     {
         return $this->sIRET;
+    }
+
+    /**
+     * Set User
+     *
+     * @param \BG\UserBundle\Entity\User $user
+     * @return Company
+     */
+    public function setUser(\BG\UserBundle\Entity\User $user)
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get User
+     *
+     * @return \BG\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->User;
     }
 }

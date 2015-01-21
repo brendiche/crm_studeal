@@ -5,21 +5,72 @@
 		<din class="row">
 			<div class="col-lg-6" >
 				<h3>Répertoire</h3>
-					<ul class="nav nav-tabs nav-justified">
-						<li ><a href="#">Client</a></li>
-						<li><a href="#">Entreprise</a></li>
+				<div id="tabs">
+					<ul>
+						<li ><a href="#tabs-1">Client</a></li>
+						<li><a href="#tabs-2">Entreprise</a></li>
 					</ul>
-					{% if clients is not empty %}
-					{% for client in clients %}
-						<div class="well">
-							{{ client.nom }}
-						</div>
-					{% endfor %}
-					{% else %}
-						<div class="well" style="text-align:center">
-							<h2>Vos n'avez pas encore de contact.</h2>
-						</div>
-					{% endif %}
+					<div id="tabs-1">
+						{% if clients is not empty %}
+
+							{% for client in clients %}
+								<div class="well">
+									<strong>Nom : </strong>
+									{{ client.nom }} {{ client.prenom }}
+									<strong>| Email : </strong>
+									{{ client.email }} 
+									<strong>| Téléphone : </strong>
+									{{ client.telephone }}
+									<br>
+									{% if client.Company is not empty %}
+										<strong>Entreprise : </strong>{{ client.Company.nom }}
+									{% else %}
+										Ce client n'est pas rattaché à une entreprise.
+									{% endif %}
+									<div class="row">
+										<div class="col-lg-3" style="margin-top:20px">
+											<a href="{{path("bg_plateform_edit_client",{'id': client.id})}}" class="btn btn-primary" style="width:100%">Editer le client</a>
+										</div>
+										<div class="col-lg-3" style="margin-top:20px">
+											<a href="{{path("bg_plateform_delete_client",{'id': client.id})}}" class="btn btn-danger" style="width:100%">Supprimer le client</a>											
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							{% else %}
+							<div class="well" style="text-align:center">
+								<h3>Vos n'avez pas encore enregisté de client.</h3>
+							</div>
+						{% endif %}
+					</div>
+					<div id="tabs-2">
+						{% if companies is not empty %}
+
+							{% for company in companies %}
+								<div class="well">
+									<strong>Nom : </strong>
+									{{ company.nom }} 
+									<strong>| Adresse : </strong>
+									{{ company.adresse }}
+									<strong>| SIRET : </strong>
+									{{ company.sIRET}}
+									<div class="row">
+										<div class="col-lg-3" style="margin-top:20px">
+											<a href="{{path("bg_plateform_edit_company",{'id': company.id})}}" class="btn btn-primary" style="width:100%">Editer l'entreprise</a>
+										</div>
+										<div class="col-lg-4" style="margin-top:20px">
+											<a href="{{path("bg_plateform_delete_company",{'id': company.id})}}" class="btn btn-danger" style="width:100%">Supprimer l'entreprise</a>											
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+							{% else %}
+							<div class="well" style="text-align:center">
+								<h3>Vos n'avez pas encore enregisté d'entreprise.</h3>
+							</div>
+						{% endif %}
+					</div>
+				</div>
 			</div>	
 			<div class="col-lg-6">
 				<a class="btn btn-default" href="{{  path('bg_plateform_add_client') }}">Ajouter client</a>

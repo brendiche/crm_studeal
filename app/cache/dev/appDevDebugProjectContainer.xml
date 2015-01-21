@@ -297,7 +297,9 @@
         <parameter>ROLE_USER</parameter>
       </parameter>
       <parameter key="ROLE_SUPER_ADMIN" type="collection">
+        <parameter>ROLE_USER</parameter>
         <parameter>ROLE_ADMIN</parameter>
+        <parameter>ROLE_ALLOWED_TO_SWITCH</parameter>
       </parameter>
     </parameter>
     <parameter key="twig.class">Twig_Environment</parameter>
@@ -3019,7 +3021,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>54bc312b83471</argument>
+            <argument>54be9f524ba35</argument>
           </service>
         </argument>
       </argument>
@@ -3074,7 +3076,9 @@
           <argument>ROLE_USER</argument>
         </argument>
         <argument key="ROLE_SUPER_ADMIN" type="collection">
+          <argument>ROLE_USER</argument>
           <argument>ROLE_ADMIN</argument>
+          <argument>ROLE_ALLOWED_TO_SWITCH</argument>
         </argument>
       </argument>
     </service>
@@ -3309,7 +3313,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>54bc312b83471</argument>
+            <argument>54be9f524ba35</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>

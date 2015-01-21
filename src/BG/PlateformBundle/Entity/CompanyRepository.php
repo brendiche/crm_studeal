@@ -3,6 +3,7 @@
 namespace BG\PlateformBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * CompanyRepository
@@ -12,4 +13,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class CompanyRepository extends EntityRepository
 {
+	public function getCompanyFromUser($id){
+		$qb = $this->createQueryBuilder('c');
+	    $qb ->join("c.User","u","WITH","u.id = :id")
+	    	->setParameter('id',$id)
+	    	->addSelect("u")
+	      ;
+	    return $qb
+	      ->getQuery()
+	      ->getResult()
+	    ; 
+	}
 }

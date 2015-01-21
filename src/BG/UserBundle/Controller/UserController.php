@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BG\UserBundle\Entity\User;
 use BG\PlateformBundle\entity\Client;
+use BG\PlateformBundle\entity\Company;
 use Doctrine\ORM\EntityRepository;
 
 class UserController extends Controller
@@ -19,9 +20,14 @@ class UserController extends Controller
                     ->getDoctrine()
                     ->getManager()
                     ->getRepository('BGPlateformBundle:Client')
-                    ->getClientWithUser($id);   
+                    ->getClientFromUser($id); 
+            $companies = $this
+                            ->getDoctrine()
+                            ->getManager()
+                            ->getRepository('BGPlateformBundle:Company')
+                            ->getCompanyFromUser($id);
         
-            return $this->render('BGUserBundle:Default:user.html.twig',array("id"=>$id,"clients"=>$clients));    
+            return $this->render('BGUserBundle:Default:user.html.twig',array("id"=>$id,"clients"=>$clients,"companies"=>$companies));    
         }
     	
         else return $this->render('BGPlateformBundle:Default:error.html.twig',array(

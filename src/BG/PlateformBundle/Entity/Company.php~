@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Company
 {   
+
+    /**
+    * @ORM\ManyToOne(targetEntity="BG\UserBundle\Entity\User")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $User;
+    
     /**
      * @var integer
      *

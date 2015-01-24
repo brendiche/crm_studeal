@@ -1,0 +1,19 @@
+{% extends '::layout/home.html.twig' %}
+{% block main %}
+	<div class="container-fluid">
+		<din class="row">
+			<div class="col-lg-6" >
+				{% for user in users %}
+					<div class="well">
+						<strong>Username : </strong>
+						{{ user.username }}
+						<strong>Email : </strong>
+						{{ user.email }}
+						<br>
+						<a class="btn btn-danger" style="margin-top:20px" href="{{ path('bg_user_delete',{'id': user.id })}}"> Supprimer le compte </a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

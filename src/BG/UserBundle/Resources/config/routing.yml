@@ -1,3 +1,9 @@
 bg_plateform_user:
     path:    /user/{id}
     defaults: {_controller: BGUserBundle:User:index}
+bg_user_delete:
+    path:    /user/delete/{id}
+    defaults: {_controller: BGUserBundle:User:delete}
+bg_user_admin:
+    path:    /user/list/
+    defaults: {_controller: BGUserBundle:User:list}

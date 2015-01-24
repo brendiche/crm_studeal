@@ -32,6 +32,11 @@ class Client
     private $Image;
 
     /**
+     * @ORM\OneToOne(targetEntity="BG\PlateformBundle\Entity\Oportunity", cascade={"persist"})
+     */
+    private $Oportunity;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -47,6 +52,13 @@ class Client
      */
     private $nom;
 
+    /**
+    * @var text
+    *
+    * @ORM\Column(name="Coment",type="text",nullable=true)
+    */
+    private $coment;
+    
     /**
      * @var string
      *
@@ -274,5 +286,51 @@ class Client
     public function getAddCompany()
     {
         return $this->addCompany;
+    }
+
+    /**
+     * Set coment
+     *
+     * @param string $coment
+     * @return Client
+     */
+    public function setComent($coment)
+    {
+        $this->coment = $coment;
+
+        return $this;
+    }
+
+    /**
+     * Get coment
+     *
+     * @return string 
+     */
+    public function getComent()
+    {
+        return $this->coment;
+    }
+
+    /**
+     * Set Oportunity
+     *
+     * @param \BG\PlateformBundle\Entity\Oportunity $oportunity
+     * @return Client
+     */
+    public function setOportunity(\BG\PlateformBundle\Entity\Oportunity $oportunity = null)
+    {
+        $this->Oportunity = $oportunity;
+
+        return $this;
+    }
+
+    /**
+     * Get Oportunity
+     *
+     * @return \BG\PlateformBundle\Entity\Oportunity 
+     */
+    public function getOportunity()
+    {
+        return $this->Oportunity;
     }
 }

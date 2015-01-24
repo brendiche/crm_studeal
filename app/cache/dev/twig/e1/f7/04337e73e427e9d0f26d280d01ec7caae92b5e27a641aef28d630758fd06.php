@@ -57,51 +57,80 @@ class __TwigTemplate_e1f704337e73e427e9d0f26d280d01ec7caae92b5e27a641aef28d63075
             $context['_seq'] = twig_ensure_traversable((isset($context["clients"]) ? $context["clients"] : $this->getContext($context, "clients")));
             foreach ($context['_seq'] as $context["_key"] => $context["client"]) {
                 // line 17
-                echo "\t\t\t\t\t\t\t\t<div class=\"well\">
-\t\t\t\t\t\t\t\t\t<strong>Nom : </strong>
+                echo "\t\t\t\t\t\t\t\t";
+                if ( !twig_test_empty($this->getAttribute($context["client"], "coment", array()))) {
+                    // line 18
+                    echo "\t\t\t\t\t\t\t\t<div class=\"well\" title=\"";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["client"], "coment", array()), "html", null, true);
+                    echo "\">
+\t\t\t\t\t\t\t\t";
+                } else {
+                    // line 20
+                    echo "\t\t\t\t\t\t\t\t<div class=\"well\">
+\t\t\t\t\t\t\t\t";
+                }
+                // line 22
+                echo "\t\t\t\t\t\t\t\t\t<strong>Nom : </strong>
 \t\t\t\t\t\t\t\t\t";
-                // line 19
+                // line 23
                 echo twig_escape_filter($this->env, $this->getAttribute($context["client"], "nom", array()), "html", null, true);
                 echo " ";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["client"], "prenom", array()), "html", null, true);
                 echo "
 \t\t\t\t\t\t\t\t\t<strong>| Email : </strong>
 \t\t\t\t\t\t\t\t\t";
-                // line 21
+                // line 25
                 echo twig_escape_filter($this->env, $this->getAttribute($context["client"], "email", array()), "html", null, true);
                 echo " 
 \t\t\t\t\t\t\t\t\t<strong>| Téléphone : </strong>
 \t\t\t\t\t\t\t\t\t";
-                // line 23
+                // line 27
                 echo twig_escape_filter($this->env, $this->getAttribute($context["client"], "telephone", array()), "html", null, true);
                 echo "
 \t\t\t\t\t\t\t\t\t<br>
 \t\t\t\t\t\t\t\t\t";
-                // line 25
+                // line 29
                 if ( !twig_test_empty($this->getAttribute($context["client"], "Company", array()))) {
-                    // line 26
+                    // line 30
                     echo "\t\t\t\t\t\t\t\t\t\t<strong>Entreprise : </strong>";
                     echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["client"], "Company", array()), "nom", array()), "html", null, true);
                     echo "
 \t\t\t\t\t\t\t\t\t";
                 } else {
-                    // line 28
+                    // line 32
                     echo "\t\t\t\t\t\t\t\t\t\tCe client n'est pas rattaché à une entreprise.
 \t\t\t\t\t\t\t\t\t";
                 }
-                // line 30
+                // line 34
+                echo "\t\t\t\t\t\t\t\t\t";
+                if ( !twig_test_empty($this->getAttribute($context["client"], "Oportunity", array()))) {
+                    // line 35
+                    echo "\t\t\t\t\t\t\t\t\t\t<br>
+\t\t\t\t\t\t\t\t\t\t<strong>";
+                    // line 36
+                    echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["client"], "Oportunity", array()), "state", array()), "html", null, true);
+                    echo "</strong>
+\t\t\t\t\t\t\t\t\t";
+                }
+                // line 38
                 echo "\t\t\t\t\t\t\t\t\t<div class=\"row\">
 \t\t\t\t\t\t\t\t\t\t<div class=\"col-lg-3\" style=\"margin-top:20px\">
 \t\t\t\t\t\t\t\t\t\t\t<a href=\"";
-                // line 32
+                // line 40
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_edit_client", array("id" => $this->getAttribute($context["client"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-primary\" style=\"width:100%\">Editer le client</a>
 \t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t\t<div class=\"col-lg-3\" style=\"margin-top:20px\">
 \t\t\t\t\t\t\t\t\t\t\t<a href=\"";
-                // line 35
+                // line 43
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_delete_client", array("id" => $this->getAttribute($context["client"], "id", array()))), "html", null, true);
-                echo "\" class=\"btn btn-danger\" style=\"width:100%\">Supprimer le client</a>\t\t\t\t\t\t\t\t\t\t\t
+                echo "\" class=\"btn btn-danger\" >Supprimer le client</a>\t\t\t\t\t\t\t\t\t\t\t
+\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t<div class=\"col-lg-3\" style=\"margin-top:20px\">
+\t\t\t\t\t\t\t\t\t\t\t<a href=\"";
+                // line 46
+                echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_oportunity", array("id" => $this->getAttribute($context["client"], "id", array()))), "html", null, true);
+                echo "\" class=\"btn btn-warning\"  >Ajouter une opportunité</a>
 \t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t</div>
@@ -110,55 +139,67 @@ class __TwigTemplate_e1f704337e73e427e9d0f26d280d01ec7caae92b5e27a641aef28d63075
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['client'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 40
+            // line 51
             echo "\t\t\t\t\t\t\t";
         } else {
-            // line 41
+            // line 52
             echo "\t\t\t\t\t\t\t<div class=\"well\" style=\"text-align:center\">
 \t\t\t\t\t\t\t\t<h3>Vos n'avez pas encore enregisté de client.</h3>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t";
         }
-        // line 45
+        // line 56
         echo "\t\t\t\t\t</div>
 \t\t\t\t\t<div id=\"tabs-2\">
 \t\t\t\t\t\t";
-        // line 47
+        // line 58
         if ( !twig_test_empty((isset($context["companies"]) ? $context["companies"] : $this->getContext($context, "companies")))) {
-            // line 48
+            // line 59
             echo "
 \t\t\t\t\t\t\t";
-            // line 49
+            // line 60
             $context['_parent'] = (array) $context;
             $context['_seq'] = twig_ensure_traversable((isset($context["companies"]) ? $context["companies"] : $this->getContext($context, "companies")));
             foreach ($context['_seq'] as $context["_key"] => $context["company"]) {
-                // line 50
-                echo "\t\t\t\t\t\t\t\t<div class=\"well\">
-\t\t\t\t\t\t\t\t\t<strong>Nom : </strong>
+                // line 61
+                echo "\t\t\t\t\t\t\t\t";
+                if ( !twig_test_empty($this->getAttribute($context["company"], "coment", array()))) {
+                    // line 62
+                    echo "\t\t\t\t\t\t\t\t<div class=\"well\" title=\"";
+                    echo twig_escape_filter($this->env, $this->getAttribute($context["company"], "coment", array()), "html", null, true);
+                    echo "\">
+\t\t\t\t\t\t\t\t";
+                } else {
+                    // line 64
+                    echo "\t\t\t\t\t\t\t\t<div class=\"well\">
+\t\t\t\t\t\t\t\t";
+                }
+                // line 66
+                echo "\t\t\t\t\t\t\t\t\t<strong>Nom : </strong>
 \t\t\t\t\t\t\t\t\t";
-                // line 52
+                // line 67
                 echo twig_escape_filter($this->env, $this->getAttribute($context["company"], "nom", array()), "html", null, true);
                 echo " 
 \t\t\t\t\t\t\t\t\t<strong>| Adresse : </strong>
 \t\t\t\t\t\t\t\t\t";
-                // line 54
+                // line 69
                 echo twig_escape_filter($this->env, $this->getAttribute($context["company"], "adresse", array()), "html", null, true);
                 echo "
 \t\t\t\t\t\t\t\t\t<strong>| SIRET : </strong>
 \t\t\t\t\t\t\t\t\t";
-                // line 56
+                // line 71
                 echo twig_escape_filter($this->env, $this->getAttribute($context["company"], "sIRET", array()), "html", null, true);
                 echo "
 \t\t\t\t\t\t\t\t\t<div class=\"row\">
 \t\t\t\t\t\t\t\t\t\t<div class=\"col-lg-3\" style=\"margin-top:20px\">
 \t\t\t\t\t\t\t\t\t\t\t<a href=\"";
-                // line 59
+                // line 74
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_edit_company", array("id" => $this->getAttribute($context["company"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-primary\" style=\"width:100%\">Editer l'entreprise</a>
 \t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t\t<div class=\"col-lg-4\" style=\"margin-top:20px\">
 \t\t\t\t\t\t\t\t\t\t\t<a href=\"";
-                // line 62
+                // line 77
                 echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_delete_company", array("id" => $this->getAttribute($context["company"], "id", array()))), "html", null, true);
                 echo "\" class=\"btn btn-danger\" style=\"width:100%\">Supprimer l'entreprise</a>\t\t\t\t\t\t\t\t\t\t\t
 \t\t\t\t\t\t\t\t\t\t</div>
@@ -169,26 +210,26 @@ class __TwigTemplate_e1f704337e73e427e9d0f26d280d01ec7caae92b5e27a641aef28d63075
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['company'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 67
+            // line 82
             echo "\t\t\t\t\t\t\t";
         } else {
-            // line 68
+            // line 83
             echo "\t\t\t\t\t\t\t<div class=\"well\" style=\"text-align:center\">
 \t\t\t\t\t\t\t\t<h3>Vos n'avez pas encore enregisté d'entreprise.</h3>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t";
         }
-        // line 72
+        // line 87
         echo "\t\t\t\t\t</div>
 \t\t\t\t</div>
 \t\t\t</div>\t
 \t\t\t<div class=\"col-lg-6\">
 \t\t\t\t<a class=\"btn btn-default\" href=\"";
-        // line 76
+        // line 91
         echo $this->env->getExtension('routing')->getPath("bg_plateform_add_client");
         echo "\">Ajouter client</a>
 \t\t\t\t<a class=\"btn btn-default\" href=\"";
-        // line 77
+        // line 92
         echo $this->env->getExtension('routing')->getPath("bg_plateform_add_company");
         echo "\">Ajouter entreprise</a>
 \t\t\t</div>
@@ -209,6 +250,6 @@ class __TwigTemplate_e1f704337e73e427e9d0f26d280d01ec7caae92b5e27a641aef28d63075
 
     public function getDebugInfo()
     {
-        return array (  192 => 77,  188 => 76,  182 => 72,  176 => 68,  173 => 67,  162 => 62,  156 => 59,  150 => 56,  145 => 54,  140 => 52,  136 => 50,  132 => 49,  129 => 48,  127 => 47,  123 => 45,  117 => 41,  114 => 40,  103 => 35,  97 => 32,  93 => 30,  89 => 28,  83 => 26,  81 => 25,  76 => 23,  71 => 21,  64 => 19,  60 => 17,  56 => 16,  53 => 15,  51 => 14,  39 => 4,  36 => 3,  11 => 1,);
+        return array (  233 => 92,  229 => 91,  223 => 87,  217 => 83,  214 => 82,  203 => 77,  197 => 74,  191 => 71,  186 => 69,  181 => 67,  178 => 66,  174 => 64,  168 => 62,  165 => 61,  161 => 60,  158 => 59,  156 => 58,  152 => 56,  146 => 52,  143 => 51,  132 => 46,  126 => 43,  120 => 40,  116 => 38,  111 => 36,  108 => 35,  105 => 34,  101 => 32,  95 => 30,  93 => 29,  88 => 27,  83 => 25,  76 => 23,  73 => 22,  69 => 20,  63 => 18,  60 => 17,  56 => 16,  53 => 15,  51 => 14,  39 => 4,  36 => 3,  11 => 1,);
     }
 }

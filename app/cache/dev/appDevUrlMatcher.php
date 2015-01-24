@@ -127,9 +127,26 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // bg_plateform_user
-        if (0 === strpos($pathinfo, '/user') && preg_match('#^/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_user')), array (  '_controller' => 'BG\\UserBundle\\Controller\\UserController::indexAction',));
+        if (0 === strpos($pathinfo, '/user')) {
+            // bg_plateform_user
+            if (preg_match('#^/user/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_user')), array (  '_controller' => 'BG\\UserBundle\\Controller\\UserController::indexAction',));
+            }
+
+            // bg_user_delete
+            if (0 === strpos($pathinfo, '/user/delete') && preg_match('#^/user/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_user_delete')), array (  '_controller' => 'BG\\UserBundle\\Controller\\UserController::deleteAction',));
+            }
+
+            // bg_user_admin
+            if (rtrim($pathinfo, '/') === '/user/list') {
+                if (substr($pathinfo, -1) !== '/') {
+                    return $this->redirect($pathinfo.'/', 'bg_user_admin');
+                }
+
+                return array (  '_controller' => 'BG\\UserBundle\\Controller\\UserController::listAction',  '_route' => 'bg_user_admin',);
+            }
+
         }
 
         // bg_plateform_home
@@ -186,6 +203,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+        }
+
+        // bg_plateform_oportunity
+        if (0 === strpos($pathinfo, '/oportunity/add') && preg_match('#^/oportunity/add/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_oportunity')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::addOportunityAction',));
         }
 
         if (0 === strpos($pathinfo, '/log')) {

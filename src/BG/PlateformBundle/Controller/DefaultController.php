@@ -5,6 +5,7 @@ namespace BG\PlateformBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use BG\PlateformBundle\Entity\Client;
 use BG\PlateformBundle\Entity\Company;
+use BG\PlateformBundle\Entity\Oportunity;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityRepository;
 
@@ -25,6 +26,7 @@ class DefaultController extends Controller
     					->add("Prenom","text")
     					->add("Email","email")
     					->add("Telephone","text")
+                        ->add("Coment","textarea")
                         ->add("addCompany","checkbox",array('required'  => false,))
                         ->add("Company","entity",array(
                                                     "class"=>"BGPlateformBundle:Company",
@@ -68,7 +70,8 @@ class DefaultController extends Controller
                         ->add("Prenom","text")
                         ->add("Email","email")
                         ->add("Telephone","text")
-                        ->add("addCompany","checkbox",array('required'  => false,))
+                        ->add("Coment","textarea",array('required'  => false))
+                        ->add("addCompany","checkbox",array('required'  => false))
                         ->add("Company","entity",array(
                                                     "class"=>"BGPlateformBundle:Company",
                                                     "query_builder"=>function(EntityRepository $er){
@@ -118,6 +121,7 @@ class DefaultController extends Controller
                         ->add("Nom","text")
                         ->add("adresse","text")
                         ->add("siret","text")
+                        ->add("Coment","textarea")
                         ->add('Enregistrer',"submit")
                         ->getForm();
 
@@ -143,6 +147,7 @@ class DefaultController extends Controller
                         ->add("Nom","text")
                         ->add("adresse","text")
                         ->add("siret","text")
+                        ->add("Coment","textarea")
                         ->add('Enregistrer',"submit")
                         ->getForm();
         $form->handleRequest($request);
@@ -160,9 +165,43 @@ class DefaultController extends Controller
     public function deleteCompanyAction($id){
          $em = $this->getDoctrine()->getManager();
         $company = $em->getRepository('BGPlateformBundle:Company')->find($id);
+        $clients = $em->getRepository('BGPlateformBundle:Client')->getClientFromCompany($id);
+        foreach ($clients as $client) {
+            $client->unsetCompany();
+        }
         $em->remove($company);
         $em->flush();
         return $this->redirect($this->get('router')->generate('bg_plateform_user',array("id"=> $this->get('security.context')->getToken()->getUser()->getId())));
         
+    }
+
+    public function addOportunityAction(Request $request,$id){
+        $oportunity = new Oportunity();
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository("BGPlateformBundle:Client")->find($id);
+        $form = $this->get('form.factory')->createBuilder('form',$oportunity)
+                        ->add("content","textarea")
+                        ->add("state","choice",array(
+                                "multiple" => false,
+                                "expanded" => true ,
+                                "choices"=>array(
+                                   "f"=>"Froid",
+                                   "c"=>"Chaud",
+                                   "cs"=>"Contrat Signé"
+                                    )))
+                        ->add('Enregistrer',"submit")
+                        ->getForm();
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $client->setOportunity($oportunity);
+            $em->persist($oportunity);
+            $em->flush();
+            return $this->redirect($this->generateUrl('bg_plateform_user',
+             array('id' => $this->get('security.context')->getToken()->getUser()->getId())));
+        }
+
+        return $this->render('BGPlateformBundle:Default:addOportunity.html.twig', array(
+            'form' => $form->createView(),
+            ));
     }
 }

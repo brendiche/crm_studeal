@@ -43,6 +43,12 @@ class Company
     private $adresse;
 
     /**
+    * @var text
+    * @ORM\Column(name="Coment",type="text")
+    */
+    private $coment;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="SIRET", type="integer")
@@ -150,5 +156,28 @@ class Company
     public function getUser()
     {
         return $this->User;
+    }
+
+    /**
+     * Set coment
+     *
+     * @param string $coment
+     * @return Company
+     */
+    public function setComent($coment)
+    {
+        $this->coment = $coment;
+
+        return $this;
+    }
+
+    /**
+     * Get coment
+     *
+     * @return string 
+     */
+    public function getComent()
+    {
+        return $this->coment;
     }
 }

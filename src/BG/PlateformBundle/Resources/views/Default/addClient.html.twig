@@ -34,6 +34,13 @@
 					</div>
 				</div>
 				<div class="form-group">
+					{{ form_label(form.Coment,"Commentaire",{'label_attr':{'class': 'col-lg-3 control-label'}})}}
+					{{ form_errors(form.Coment)}}
+					<div class="col-lg-4">
+						{{ form_widget(form.Coment,{'attr': {'class':'form-control'}})}}
+					</div>
+				</div>
+				<div class="form-group">
 					{{ form_label(form.addCompany,"Voulez vous lui associer une entreprise",{'label_attr':{'class': 'col-lg-3 control-label'}})}}
 					{{ form_errors(form.addCompany)}}
 					<div class="col-lg-4">

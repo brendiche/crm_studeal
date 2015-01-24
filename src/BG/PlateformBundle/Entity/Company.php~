@@ -43,6 +43,12 @@ class Company
     private $adresse;
 
     /**
+    * @var text
+    * @ORM\Column(name="Coment",type="text")
+    */
+    private $coment;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="SIRET", type="integer")
@@ -127,5 +133,28 @@ class Company
     public function getSIRET()
     {
         return $this->sIRET;
+    }
+
+    /**
+     * Set User
+     *
+     * @param \BG\UserBundle\Entity\User $user
+     * @return Company
+     */
+    public function setUser(\BG\UserBundle\Entity\User $user)
+    {
+        $this->User = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get User
+     *
+     * @return \BG\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->User;
     }
 }

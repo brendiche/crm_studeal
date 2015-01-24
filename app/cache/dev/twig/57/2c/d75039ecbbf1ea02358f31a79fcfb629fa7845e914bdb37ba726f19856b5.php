@@ -39,6 +39,10 @@ class __TwigTemplate_572cd75039ecbbf1ea02358f31a79fcfb629fa7845e914bdb37ba726f19
         // line 8
         echo $this->env->getExtension('routing')->getPath("fos_user_change_password");
         echo "\"> Changer mon mot de passe </a>
+<a class=\"btn btn-danger\" href=\"";
+        // line 9
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_user_delete", array("id" => $this->getAttribute((isset($context["user"]) ? $context["user"] : $this->getContext($context, "user")), "id", array()))), "html", null, true);
+        echo "\"> Supprimer mon compte </a>
 
 ";
     }
@@ -55,6 +59,6 @@ class __TwigTemplate_572cd75039ecbbf1ea02358f31a79fcfb629fa7845e914bdb37ba726f19
 
     public function getDebugInfo()
     {
-        return array (  40 => 8,  36 => 7,  29 => 5,  23 => 4,  19 => 2,);
+        return array (  44 => 9,  40 => 8,  36 => 7,  29 => 5,  23 => 4,  19 => 2,);
     }
 }

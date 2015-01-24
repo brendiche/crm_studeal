@@ -64,10 +64,10 @@ class Company extends \BG\PlateformBundle\Entity\Company implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'User', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'id', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'nom', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'adresse', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'sIRET');
+            return array('__isInitialized__', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'User', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'id', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'nom', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'adresse', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'coment', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'sIRET');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'User', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'id', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'nom', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'adresse', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'sIRET');
+        return array('__isInitialized__', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'User', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'id', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'nom', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'adresse', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'coment', '' . "\0" . 'BG\\PlateformBundle\\Entity\\Company' . "\0" . 'sIRET');
     }
 
     /**
@@ -274,6 +274,28 @@ class Company extends \BG\PlateformBundle\Entity\Company implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
 
         return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setComent($coment)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setComent', array($coment));
+
+        return parent::setComent($coment);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getComent()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getComent', array());
+
+        return parent::getComent();
     }
 
 }

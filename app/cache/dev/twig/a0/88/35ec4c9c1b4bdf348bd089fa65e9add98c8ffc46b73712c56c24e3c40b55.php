@@ -65,40 +65,52 @@ class __TwigTemplate_a08835ec4c9c1b4bdf348bd089fa65e9add98c8ffc46b73712c56c24e3c
             // line 16
             echo $this->env->getExtension('routing')->getPath("fos_user_profile_show");
             echo "\">Mon compte</a></li>
-\t                </ul>
+\t                  ";
+            // line 17
+            if (twig_in_filter("ROLE_SUPER_ADMIN", $this->getAttribute($this->getAttribute((isset($context["app"]) ? $context["app"] : $this->getContext($context, "app")), "user", array()), "roles", array()))) {
+                // line 18
+                echo "\t                  \t<li class=\"divider\"></li>
+\t                  \t<li><a href=\"";
+                // line 19
+                echo $this->env->getExtension('routing')->getPath("bg_user_admin");
+                echo "\">Liste utilisateur</a></li>
+\t                  ";
+            }
+            // line 21
+            echo "\t                </ul>
 \t\t\t\t</li>
 \t\t\t\t<li class=\"btn-danger\"><a href=\"";
-            // line 19
+            // line 23
             echo $this->env->getExtension('routing')->getPath("fos_user_security_logout");
             echo "\" style=\"color:black;text-align:center\">Déconnexion</a></li>\t\t\t\t\t
 \t\t\t\t";
         } else {
-            // line 21
+            // line 25
             echo "\t\t\t\t<li class=\"btn-info\"><a href=\"";
             echo $this->env->getExtension('routing')->getPath("fos_user_security_login");
             echo "\" style=\"color:black;text-align:center\">Connexion</a></li>
 \t\t\t\t<li class=\"btn-success\"><a href=\"";
-            // line 22
+            // line 26
             echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
             echo "\" style=\"color:black;text-align:center\">Inscription</a></li>
 \t\t\t\t";
         }
-        // line 24
+        // line 28
         echo "\t\t\t</ul>
 \t\t</div>
 \t</nav>
     ";
-        // line 27
+        // line 31
         $this->displayBlock('main', $context, $blocks);
-        // line 28
+        // line 32
         echo "    \t
 ";
     }
 
-    // line 27
+    // line 31
     public function block_main($context, array $blocks = array())
     {
-        // line 28
+        // line 32
         echo "\t";
     }
 
@@ -114,6 +126,6 @@ class __TwigTemplate_a08835ec4c9c1b4bdf348bd089fa65e9add98c8ffc46b73712c56c24e3c
 
     public function getDebugInfo()
     {
-        return array (  102 => 28,  99 => 27,  94 => 28,  92 => 27,  87 => 24,  82 => 22,  77 => 21,  72 => 19,  66 => 16,  61 => 14,  56 => 12,  53 => 11,  51 => 10,  45 => 7,  40 => 4,  37 => 3,  11 => 1,);
+        return array (  114 => 32,  111 => 31,  106 => 32,  104 => 31,  99 => 28,  94 => 26,  89 => 25,  84 => 23,  80 => 21,  75 => 19,  72 => 18,  70 => 17,  66 => 16,  61 => 14,  56 => 12,  53 => 11,  51 => 10,  45 => 7,  40 => 4,  37 => 3,  11 => 1,);
     }
 }

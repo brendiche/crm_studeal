@@ -14,7 +14,11 @@
 						{% if clients is not empty %}
 
 							{% for client in clients %}
+								{% if  client.coment  is not empty %}
+								<div class="well" title="{{ client.coment }}">
+								{% else %}
 								<div class="well">
+								{% endif %}
 									<strong>Nom : </strong>
 									{{ client.nom }} {{ client.prenom }}
 									<strong>| Email : </strong>
@@ -27,12 +31,19 @@
 									{% else %}
 										Ce client n'est pas rattaché à une entreprise.
 									{% endif %}
+									{% if client.Oportunity is not empty %}
+										<br>
+										<strong>{{ client.Oportunity.state }}</strong>
+									{% endif %}
 									<div class="row">
 										<div class="col-lg-3" style="margin-top:20px">
 											<a href="{{path("bg_plateform_edit_client",{'id': client.id})}}" class="btn btn-primary" style="width:100%">Editer le client</a>
 										</div>
 										<div class="col-lg-3" style="margin-top:20px">
-											<a href="{{path("bg_plateform_delete_client",{'id': client.id})}}" class="btn btn-danger" style="width:100%">Supprimer le client</a>											
+											<a href="{{path("bg_plateform_delete_client",{'id': client.id})}}" class="btn btn-danger" >Supprimer le client</a>											
+										</div>
+										<div class="col-lg-3" style="margin-top:20px">
+											<a href="{{path("bg_plateform_oportunity",{'id': client.id})}}" class="btn btn-warning"  >Ajouter une opportunité</a>
 										</div>
 									</div>
 								</div>
@@ -47,7 +58,11 @@
 						{% if companies is not empty %}
 
 							{% for company in companies %}
+								{% if  company.coment  is not empty %}
+								<div class="well" title="{{ company.coment }}">
+								{% else %}
 								<div class="well">
+								{% endif %}
 									<strong>Nom : </strong>
 									{{ company.nom }} 
 									<strong>| Adresse : </strong>

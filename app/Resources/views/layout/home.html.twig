@@ -14,6 +14,10 @@
 	                  <li><a href="{{  path('bg_plateform_user',{'id': app.user.id }) }}">Répertoire</a></li>
 	                  <li class="divider"></li>
 	                  <li><a href="{{ path('fos_user_profile_show') }}">Mon compte</a></li>
+	                  {% if "ROLE_SUPER_ADMIN" in app.user.roles %}
+	                  	<li class="divider"></li>
+	                  	<li><a href="{{ path("bg_user_admin") }}">Liste utilisateur</a></li>
+	                  {% endif %}
 	                </ul>
 				</li>
 				<li class="btn-danger"><a href="{{ path('fos_user_security_logout')}}" style="color:black;text-align:center">Déconnexion</a></li>					

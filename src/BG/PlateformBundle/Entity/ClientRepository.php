@@ -18,13 +18,19 @@ class ClientRepository extends EntityRepository
 	    $qb ->join("c.User","u","WITH","u.id = :id")
 	    	->setParameter('id',$id)
 	    	->addSelect("u")
-	    	->leftjoin("c.Company","e")
-	    	->addSelect("e")
 	      ;
 	    return $qb
 	      ->getQuery()
 	      ->getResult()
 	    ;
+	}
+	public function getClientFromCompany($id){
+		$qb = $this->createQueryBuilder('c');
+		$qb ->join('c.Company','com',"WITH","com.id = :id")
+			->setParameter("id",$id)
+			->addSelect('com');
+
+			return $qb->getQuery()->getResult();
 	}
 
 }

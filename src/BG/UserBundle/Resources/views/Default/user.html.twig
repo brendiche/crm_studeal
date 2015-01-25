@@ -2,13 +2,14 @@
 
 {% block main %}
 	<div class="container-fluid">
-		<din class="row">
+		<div class="row">
 			<div class="col-lg-6" >
 				<h3>Répertoire</h3>
 				<div id="tabs">
 					<ul>
-						<li ><a href="#tabs-1">Client</a></li>
-						<li><a href="#tabs-2">Entreprise</a></li>
+						<li><a href="#tabs-1">Clients</a></li>
+						<li><a href="#tabs-2">Entreprises</a></li>
+						<li><a href="#tabs-3">Oportunités</a></li>
 					</ul>
 					<div id="tabs-1">
 						{% if clients is not empty %}
@@ -24,7 +25,7 @@
 									<strong>| Email : </strong>
 									{{ client.email }} 
 									<strong>| Téléphone : </strong>
-									{{ client.telephone }}
+										0{{ client.telephone }}
 									<br>
 									{% if client.Company is not empty %}
 										<strong>Entreprise : </strong>{{ client.Company.nom }}
@@ -33,7 +34,16 @@
 									{% endif %}
 									{% if client.Oportunity is not empty %}
 										<br>
-										<strong>{{ client.Oportunity.state }}</strong>
+										{% if client.Oportunity.state == "f" %}
+												<span class="btn-info"><strong>État de l'oportunité : </strong>Froid</span>
+										{% elseif client.OPortunity.state == "c" %}
+												<span class="btn-warning"><strong>État de l'oportunité : </strong>Chaud</span>
+										{% elseif client.Oportunity.state == "cs" %}
+												<span class="btn-danger"><strong>État de l'oportunité : </strong>Contrat signé</span>
+										{% endif %}
+									{% else %}
+										<br>
+										<strong>Pas d'oportunité</strong>
 									{% endif %}
 									<div class="row">
 										<div class="col-lg-3" style="margin-top:20px">
@@ -83,14 +93,37 @@
 							<div class="well" style="text-align:center">
 								<h3>Vos n'avez pas encore enregisté d'entreprise.</h3>
 							</div>
-						{% endif %}
+						{% endif %}					
 					</div>
+				<div id="tabs-3">
+					{% if oportunities is not empty %}
+						{% for oportunity in oportunities%}
+						<div class="well">
+							<strong>Contenu : </strong>
+							{{ oportunity.content }}
+							<br>
+							<strong>État : </strong>
+								{% if oportunity.state == "f" %}
+										<span class="btn-info">Froid</span>
+								{% elseif oportunity.state == "c" %}
+										<span class="btn-warning">Chaud</span>
+								{% elseif oportunity.state == "cs" %}
+										<span class="btn-danger">Contrat signé</span>
+								{% endif %}
+						</div>
+						{% endfor %}
+					{% else %}
+					<div class="well" style="text-align:center">
+						<h3>Vos n'avez pas encore enregisté d'opportunité.</h3>
+					</div>
+					{% endif %}
 				</div>
-			</div>	
+			</div>
+		</div>	
 			<div class="col-lg-6">
 				<a class="btn btn-default" href="{{  path('bg_plateform_add_client') }}">Ajouter client</a>
 				<a class="btn btn-default" href="{{ path("bg_plateform_add_company") }}">Ajouter entreprise</a>
 			</div>
-		</din>
+		</div>
 	</div>
 {% endblock %}

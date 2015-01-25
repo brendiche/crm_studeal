@@ -10,6 +10,7 @@
 						<strong>Email : </strong>
 						{{ user.email }}
 						<br>
+						<a class="btn btn-success" style="margin-top:20px" href="{{ path('bg_plateform_user',{'id':user.id })}}">Voir le répertoire</a>
 						<a class="btn btn-danger" style="margin-top:20px" href="{{ path('bg_user_delete',{'id': user.id })}}"> Supprimer le compte </a>
 					</div>
 				{% endfor %}

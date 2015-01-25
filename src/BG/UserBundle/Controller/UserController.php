@@ -27,8 +27,11 @@ class UserController extends Controller
                             ->getManager()
                             ->getRepository('BGPlateformBundle:Company')
                             ->getCompanyFromUser($id);
-        
-            return $this->render('BGUserBundle:Default:user.html.twig',array("id"=>$id,"clients"=>$clients,"companies"=>$companies));    
+            $oportunities = array();
+            foreach ($clients as $client) {
+                if(!empty($client->getOportunity())) $oportunities[]=$client->getOportunity();
+            }
+            return $this->render('BGUserBundle:Default:user.html.twig',array("id"=>$id,"clients"=>$clients,"companies"=>$companies,"oportunities"=>$oportunities));    
         }
     	
         else return $this->render('BGPlateformBundle:Default:error.html.twig',array(

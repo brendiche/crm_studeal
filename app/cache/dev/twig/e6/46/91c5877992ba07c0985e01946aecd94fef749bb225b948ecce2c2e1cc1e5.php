@@ -57,8 +57,12 @@ class __TwigTemplate_e64691c5877992ba07c0985e01946aecd94fef749bb225b948ecce2c2e1
             echo twig_escape_filter($this->env, $this->getAttribute($context["user"], "email", array()), "html", null, true);
             echo "
 \t\t\t\t\t\t<br>
-\t\t\t\t\t\t<a class=\"btn btn-danger\" style=\"margin-top:20px\" href=\"";
+\t\t\t\t\t\t<a class=\"btn btn-success\" style=\"margin-top:20px\" href=\"";
             // line 13
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_plateform_user", array("id" => $this->getAttribute($context["user"], "id", array()))), "html", null, true);
+            echo "\">Voir le répertoire</a>
+\t\t\t\t\t\t<a class=\"btn btn-danger\" style=\"margin-top:20px\" href=\"";
+            // line 14
             echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("bg_user_delete", array("id" => $this->getAttribute($context["user"], "id", array()))), "html", null, true);
             echo "\"> Supprimer le compte </a>
 \t\t\t\t\t</div>
@@ -67,7 +71,7 @@ class __TwigTemplate_e64691c5877992ba07c0985e01946aecd94fef749bb225b948ecce2c2e1
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['user'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 16
+        // line 17
         echo "\t\t\t</div>
 \t\t</div>
 \t</div>
@@ -86,6 +90,6 @@ class __TwigTemplate_e64691c5877992ba07c0985e01946aecd94fef749bb225b948ecce2c2e1
 
     public function getDebugInfo()
     {
-        return array (  71 => 16,  62 => 13,  57 => 11,  52 => 9,  48 => 7,  44 => 6,  39 => 3,  36 => 2,  11 => 1,);
+        return array (  75 => 17,  66 => 14,  62 => 13,  57 => 11,  52 => 9,  48 => 7,  44 => 6,  39 => 3,  36 => 2,  11 => 1,);
     }
 }

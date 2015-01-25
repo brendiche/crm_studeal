@@ -204,4 +204,41 @@ class DefaultController extends Controller
             'form' => $form->createView(),
             ));
     }
+
+    public function editOportunityAction(Request $request,$id){
+        $em = $this->getDoctrine()->getManager();
+        $oportunity = $em->getRepository('BGPlateformBundle:Oportunity')->find($id);
+        $form = $this->get('form.factory')->createBuilder('form',$oportunity)
+                        ->add("content","textarea")
+                        ->add("state","choice",array(
+                                "multiple" => false,
+                                "expanded" => true ,
+                                "choices"=>array(
+                                   "f"=>"Froid",
+                                   "c"=>"Chaud",
+                                   "cs"=>"Contrat Signé"
+                                    )))
+                        ->add('Enregistrer',"submit")
+                        ->getForm();
+        $form->handleRequest($request);
+        if($form->isValid()){
+            $em->flush();
+            return $this->redirect($this->generateUrl('bg_plateform_user',
+             array('id' => $this->get('security.context')->getToken()->getUser()->getId())));
+        }
+
+        return $this->render('BGPlateformBundle:Default:addOportunity.html.twig', array(
+            'form' => $form->createView(),
+            ));
+    }
+
+    public function deleteOportunityAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $oportunity = $em->getRepository('BGPlateformBundle:Oportunity')->find($id);
+        $clients = $em->getRepository('BGPlateformBundle:Client')->getClientFromOportunity($id);
+            $clients->unsetOportunity();
+        $em->remove($oportunity);
+        $em->flush();
+        return $this->redirect($this->get('router')->generate('bg_plateform_user',array("id"=> $this->get('security.context')->getToken()->getUser()->getId())));        
+    }
 }

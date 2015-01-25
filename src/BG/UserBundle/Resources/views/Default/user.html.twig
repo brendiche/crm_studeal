@@ -53,7 +53,11 @@
 											<a href="{{path("bg_plateform_delete_client",{'id': client.id})}}" class="btn btn-danger" >Supprimer le client</a>											
 										</div>
 										<div class="col-lg-3" style="margin-top:20px">
-											<a href="{{path("bg_plateform_oportunity",{'id': client.id})}}" class="btn btn-warning"  >Ajouter une opportunité</a>
+											{% if  client.Oportunity is not empty %}
+													<a href="{{path("bg_plateform_edit_oportunity",{'id': client.Oportunity.id})}}" class="btn btn-warning"  >Éditer l'opportunité</a>
+											{% else %}
+													<a href="{{path("bg_plateform_oportunity",{'id': client.id})}}" class="btn btn-warning"  >Ajouter une opportunité</a>
+											{% endif %}
 										</div>
 									</div>
 								</div>
@@ -110,6 +114,9 @@
 								{% elseif oportunity.state == "cs" %}
 										<span class="btn-danger">Contrat signé</span>
 								{% endif %}
+								<br>
+							<a href="{{path("bg_plateform_edit_oportunity",{'id': oportunity.id})}}" class="btn btn-warning"  >Éditer l'opportunité</a>
+							<a href="{{path("bg_plateform_delete_oportunity",{'id': oportunity.id})}}" class="btn btn-danger"  >Supprimer l'opportunité</a>
 						</div>
 						{% endfor %}
 					{% else %}

@@ -25,3 +25,9 @@ bg_plateform_edit_company:
 bg_plateform_oportunity:
     path:    /oportunity/add/{id}
     defaults: {_controller: BGPlateformBundle:Default:addOportunity}
+bg_plateform_edit_oportunity:
+    path:    /oportunity/edit/{id}
+    defaults: {_controller: BGPlateformBundle:Default:editOportunity}
+bg_plateform_delete_oportunity:
+    path:    /oportunity/delete/{id}
+    defaults: {_controller: BGPlateformBundle:Default:deleteOportunity}

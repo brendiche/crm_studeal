@@ -205,9 +205,22 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
-        // bg_plateform_oportunity
-        if (0 === strpos($pathinfo, '/oportunity/add') && preg_match('#^/oportunity/add/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_oportunity')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::addOportunityAction',));
+        if (0 === strpos($pathinfo, '/oportunity')) {
+            // bg_plateform_oportunity
+            if (0 === strpos($pathinfo, '/oportunity/add') && preg_match('#^/oportunity/add/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_oportunity')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::addOportunityAction',));
+            }
+
+            // bg_plateform_edit_oportunity
+            if (0 === strpos($pathinfo, '/oportunity/edit') && preg_match('#^/oportunity/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_edit_oportunity')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::editOportunityAction',));
+            }
+
+            // bg_plateform_delete_oportunity
+            if (0 === strpos($pathinfo, '/oportunity/delete') && preg_match('#^/oportunity/delete/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'bg_plateform_delete_oportunity')), array (  '_controller' => 'BG\\PlateformBundle\\Controller\\DefaultController::deleteOportunityAction',));
+            }
+
         }
 
         if (0 === strpos($pathinfo, '/log')) {

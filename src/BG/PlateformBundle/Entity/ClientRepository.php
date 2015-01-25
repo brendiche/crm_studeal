@@ -32,5 +32,12 @@ class ClientRepository extends EntityRepository
 
 			return $qb->getQuery()->getResult();
 	}
+	public function getClientFromOportunity($id){
+		$qb = $this->createQueryBuilder('c');
+		$qb ->join('c.Oportunity','o',"WITH","o.id = :id")
+			->setParameter("id",$id);
+
+			return $qb->getQuery()->getSingleResult();
+	}
 
 }

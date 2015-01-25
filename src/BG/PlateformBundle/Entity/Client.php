@@ -333,4 +333,9 @@ class Client
     {
         return $this->Oportunity;
     }
+
+    public function unsetOportunity(){
+         unset($this->Oportunity);
+         return $this;
+    }
 }
